@@ -1,0 +1,10 @@
+services:
+  app:
+    build:
+      context: .
+    container_name: htmx_horadecodar
+    ports:
+      - "80:80"
+    environment:
+      - PORT=80
+      - HOST=0.0.0.0
