@@ -16,6 +16,26 @@
         <script src="script.js" defer></script>
     </head>
     <body>
-        <h1>TODO LIST!</h1>
+        <div class="container">
+            <h1 class="mt-5">Lista de tarefas</h1>
+            <div class="mb-3">Form de pesquusa</div>
+
+            <form
+                id="todo-form"
+                class="mb-3"
+                hx-post="/api/todos"
+                hx-target="#todo-list"
+                hx-swap="beforeend"
+                hx-on::after-request="this.reset()"
+            >
+                <div class="input-group">
+                    <input type="text" class="form-control" name="title" />
+                    <div class="input-group-append">
+                        <class class="btn btn-primary">Adicionar</class>
+                    </div>
+                </div>
+            </form>
+            <ul id="todo-list" class="list-group"></ul>
+        </div>
     </body>
 </html>
