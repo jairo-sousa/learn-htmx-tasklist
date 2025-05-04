@@ -32,9 +32,11 @@ npm install
 npm start
 ```
 
--   O app estará disponível em `http://0.0.0.0:3000`
+-   O app estará disponível em [`http://0.0.0.0:3000`](http://0.0.0.0:3000)
 
 ### 🐳 Usando docker
+
+Você pode rodar o app em modo desenvolvimento ou produção usando Docker. Em ambos os casos, o app estará disponível em [`http://0.0.0.0`](http://0.0.0.0)
 
 #### Modo desenvolvimento
 
