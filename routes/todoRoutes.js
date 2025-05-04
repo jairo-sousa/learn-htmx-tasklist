@@ -27,8 +27,10 @@ const createTodoTemplate = (todo) => `
                 ${todo.completed ? "Desmarcar" : "Marcar conclusão"}
             </button>
         </form/>
-        <form class="d-inline">
-            <button class="btn btn-danger" >
+        <form class="d-inline" hx-delete="/api/todos/${
+            todo.id
+        }"  hx-target="#todo-list">
+            <button class="btn btn-danger"  >
                 Excluir
             </button>
         </form/>
@@ -52,6 +54,18 @@ router.post("/todos", async (req, res) => {
     });
 
     res.send(createTodoTemplate(newTodo));
+});
+
+router.delete("/todos/:id", async (req, res) => {
+    const id = req.params;
+
+    await Todo.destroy({ where: id });
+
+    const todos = await Todo.findAll();
+
+    const todoItems = todos.map(createTodoTemplate).join("");
+
+    res.send(todoItems);
 });
 
 module.exports = router;
