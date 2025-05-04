@@ -15,10 +15,15 @@
         />
         <script src="script.js" defer></script>
     </head>
-    <body>
+    <body
+        hx-get="/api/todos"
+        hx-trigger="load"
+        hx-target="#todo-list"
+        hx-swap="innerHTML"
+    >
         <div class="container">
             <h1 class="mt-5">Lista de tarefas</h1>
-            <div class="mb-3">Form de pesquusa</div>
+            <div class="mb-3">Form de pesquisa</div>
 
             <form
                 id="todo-form"
