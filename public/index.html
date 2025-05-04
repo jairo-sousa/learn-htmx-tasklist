@@ -23,7 +23,22 @@
     >
         <div class="container">
             <h1 class="mt-5">Lista de tarefas</h1>
-            <div class="mb-3">Form de pesquisa</div>
+            <div class="mb-3">
+                <form class="form-inline d-flex flex-column align-items-start">
+                    <label for="search" class="mb-2"> Buscar: </label>
+                    <input
+                        type="text"
+                        name="search"
+                        id="search"
+                        class="form-control"
+                        placeholder="Buscar tarefas"
+                        hx-post="api/search"
+                        hx-trigger="keyup changed delay:500ms"
+                        hx-target="#todo-list"
+                        hx-swap="innerHTML"
+                    />
+                </form>
+            </div>
 
             <form
                 id="todo-form"

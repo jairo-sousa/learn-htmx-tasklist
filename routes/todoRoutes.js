@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { sequelize } = require("sequelize");
+const { sequelize, Sequelize } = require("sequelize");
 const Todo = require("../models/todo");
 
 /**
@@ -82,6 +82,20 @@ router.put("/todos/:id", async (req, res) => {
     );
     const updatedTodo = await Todo.findByPk(id);
     res.send(createTodoTemplate(updatedTodo));
+});
+
+router.post("/search", async (req, res) => {
+    const { search } = req.body;
+
+    let where = {};
+
+    if (search) where.title = { [Sequelize.Op.like]: `%${search}%` };
+
+    const todos = await Todo.findAll({ where });
+
+    const todoItems = todos.map(createTodoTemplate).join("");
+
+    res.send(todoItems);
 });
 
 module.exports = router;
